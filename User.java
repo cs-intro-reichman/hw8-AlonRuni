@@ -119,9 +119,9 @@
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
         for (int i = 0; i < this.fCount; i++) {
-            if (this.follows[i].equals(other.name)) {
+            if (this.follows[i].toLowerCase().equals(other.name.toLowerCase())) {
                 for (int j = 0; j < other.fCount; j++) {
-                    if (other.follows[j].equals(this.name)) {
+                    if (other.follows[j].toLowerCase().equals(this.name.toLowerCase())) {
                         return true;
                     }
                 }

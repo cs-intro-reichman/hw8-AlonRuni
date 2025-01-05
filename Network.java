@@ -66,8 +66,9 @@ public class Network {
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
         if (isInNet(name1) && isInNet(name2)) {
-            this.getUser(name1).addFollowee(name2);
-            return true;
+            if (this.getUser(name1).addFollowee(name2)) {
+            return true;   
+            }
         }
         return false;
     }

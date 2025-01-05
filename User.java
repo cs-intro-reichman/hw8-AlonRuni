@@ -69,7 +69,6 @@
             }
             else if (this.follows(name)) {
                 System.out.println(this.name + " already followes " + name);
-                return true;
             }
             else if(this.fCount >= maxfCount) {
                 System.out.println(this.name + " followees list is full. couldn't follow " + name);

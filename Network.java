@@ -43,13 +43,13 @@ public class Network {
     *  If the given name is already a user in this network, does nothing and returns false;
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
-        if (this.userCount < this.users.length && ((this.getUser(User.firstHighCase(name)) == null) ? true : false)) {
-            this.users[this.userCount++] = new User(User.firstHighCase(name));  
-            return true;   
-            }
-            else {
-                return false;
+        if (name != null) {
+            if (this.userCount < this.users.length && ((this.getUser(User.firstHighCase(name)) == null) ? true : false)) {
+                this.users[this.userCount++] = new User(User.firstHighCase(name));  
+                return true;   
+                }
         }
+        return false;
     }
 
     /** Makes the user with name1 follow the user with name2. If successful, returns true.

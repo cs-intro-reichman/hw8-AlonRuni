@@ -45,19 +45,9 @@ public class Network {
     public boolean addUser(String name) {
         if (this.userCount < this.users.length && ((this.getUser(name) == null) ? true : false)) {
             this.users[this.userCount++] = new User(name);  
-            System.out.println(name + " added to Network, user No. " + userCount);
             return true;   
             }
             else {
-                if (this.userCount >= this.users.length && ((this.getUser(name) != null) ? true : false)) {
-                    System.out.println("Network is full. and " + name + "already existes.");
-                }
-                else if (this.userCount >= this.users.length) {
-                    System.out.println("Network is full. Couldn't complete action.");
-                }
-                else if((this.getUser(name) != null) ? true : false) {
-                    System.out.println(name + "already existes in Network.");
-                }
                 return false;
         }
     }

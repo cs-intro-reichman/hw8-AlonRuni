@@ -59,20 +59,10 @@
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
         if (this.fCount < maxfCount && !this.follows(firstHighCase(name))) {
-            this.follows[this.fCount++] = firstHighCase(name);  
-            System.out.println(this.name + " started following " + firstHighCase(name));   
+            this.follows[this.fCount++] = firstHighCase(name);   
             return true;
         }
         else {
-            if (this.follows(name) && this.fCount >= maxfCount) {
-                System.out.println(this.name + " followees list is full. and already followes " + name);
-            }
-            else if (this.follows(name)) {
-                System.out.println(this.name + " already followes " + name);
-            }
-            else if(this.fCount >= maxfCount) {
-                System.out.println(this.name + " followees list is full. couldn't follow " + name);
-            }
             return false;
         } 
     }

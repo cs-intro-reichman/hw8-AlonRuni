@@ -76,11 +76,9 @@
                     this.follows[j] = this.follows[j + 1];
                 }
                 this.follows[--fCount] = null;
-                System.out.println(this.name + " stopped following " + name);
                 return true;
             }
         }
-        System.out.println(this.name + " already not following " + name);
         return false;
     }
 

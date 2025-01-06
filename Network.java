@@ -25,12 +25,13 @@ public class Network {
     public int getUserCount() {
         return this.userCount;
     }
+
     /** Finds in this network, and returns, the user that has the given name.
      *  If there is no such user, returns null.
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
         for (int i = 0; i < this.userCount; i++) {
-            if (this.users[i].getName().toLowerCase().equals(name.toLowerCase())) {
+            if (this.users[i].getName().equals(User.firstHighCase(name))) {
                 return this.users[i];
             }
         }
@@ -65,7 +66,7 @@ public class Network {
      *  If any of the two names is not a user in this network,
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
-        if (isInNet(name1) && isInNet(name2)) {
+        if (isInNet(User.firstHighCase(name1)) && isInNet(User.firstHighCase(name2))) {
             if (this.getUser(name1).addFollowee(name2)) {
             return true;   
             }

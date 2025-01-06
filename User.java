@@ -45,7 +45,7 @@
     public boolean follows(String name) {
         try {
             for (int i = 0; i < this.getfCount(); i++) {
-                if (this.follows[i].toLowerCase().equals(name.toLowerCase())) {
+                if (this.follows[i].equals(firstHighCase(name))) {
                     return true;
                 }
             }
@@ -58,9 +58,9 @@
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
-        if (this.fCount < maxfCount && !this.follows(name)) {
-            this.follows[this.fCount++] = name;  
-            System.out.println(this.name + " started following " + name);   
+        if (this.fCount < maxfCount && !this.follows(firstHighCase(name))) {
+            this.follows[this.fCount++] = firstHighCase(name);  
+            System.out.println(this.name + " started following " + firstHighCase(name));   
             return true;
         }
         else {
@@ -81,7 +81,7 @@
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
         for (int i = 0; i < this.fCount; i++) {
-            if (name.equals(this.follows[i])) {
+            if (firstHighCase(name).equals(this.follows[i])) {
                 for (int j = i; j < fCount - 1; j++) {
                     this.follows[j] = this.follows[j + 1];
                 }
@@ -129,6 +129,7 @@
         }
         return false;
     }
+
     /** Returns this user's name, and the names that s/he follows. */
     public String toString() {
         String ans = name + " -> ";
@@ -136,5 +137,21 @@
             ans = ans + follows[i] + " ";
         }
         return ans;
+    }
+
+    public static String firstHighCase(String str) {
+        String otherStr = "";
+        if (str.length() > 0) {
+            if (str.charAt(0) < 123 && str.charAt(0) > 96) {
+                otherStr += (char) (str.charAt(0) - 32);
+                for (int i = 1; i < str.length(); i++) {
+                    otherStr += str.charAt(i);
+                }
+                return otherStr;
+            } else {
+               return str;
+            }
+        }    
+        return str;
     }
 }

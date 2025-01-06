@@ -74,13 +74,16 @@ public class Network {
         String mostRecommendedUserToFollow = null;
         int counted = -1;
         for (int i = 0; i < userCount; i++) {
-            if (name.equals(users[i].getName())) {
+            if (User.firstHighCase(name).equals(users[i].getName())) {
                 continue;
             }
-            counted = getUser(name).countMutual(users[i]);
-            if (counted == -1 || (counted > getUser(name).countMutual(getUser(mostRecommendedUserToFollow)))) {
+            if (counted == -1) {
                 mostRecommendedUserToFollow = users[i].getName();
                 counted = 0;
+            }
+            counted = getUser(name).countMutual(users[i]);
+            if (counted > getUser(name).countMutual(getUser(mostRecommendedUserToFollow))) {
+                mostRecommendedUserToFollow = users[i].getName();
             }
         }
         return mostRecommendedUserToFollow;

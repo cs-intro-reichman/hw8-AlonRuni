@@ -43,8 +43,8 @@ public class Network {
     *  If the given name is already a user in this network, does nothing and returns false;
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
-        if (this.userCount < this.users.length && ((this.getUser(name) == null) ? true : false)) {
-            this.users[this.userCount++] = new User(name);  
+        if (this.userCount < this.users.length && ((this.getUser(User.firstHighCase(name)) == null) ? true : false)) {
+            this.users[this.userCount++] = new User(User.firstHighCase(name));  
             return true;   
             }
             else {
@@ -56,11 +56,14 @@ public class Network {
      *  If any of the two names is not a user in this network,
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
-        if (isInNet(User.firstHighCase(name1)) && isInNet(User.firstHighCase(name2)) &&
-           !User.firstHighCase(name1).equals(User.firstHighCase(name2)) && name1 != null && name2 != null) {
-            if (this.getUser(name1).addFollowee(name2)) {
-            return true;   
+        if (name1 != null && name2 != null) {
+            if (isInNet(User.firstHighCase(name1)) && isInNet(User.firstHighCase(name2)) &&
+               !User.firstHighCase(name1).equals(User.firstHighCase(name2))) {
+                if (this.getUser(name1).addFollowee(name2)) {
+                return true;   
+                }
             }
+            return false;
         }
         return false;
     }
